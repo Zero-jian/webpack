@@ -22,32 +22,8 @@ module.exports = {
                 use: [{
                         loader: 'url-loader',
                         options: {
-                            limit: 1000,
-                            name: '[name]-[hash:5].[ext]',
-                            outputPath: 'img/',
-                            publicPath: './'
-                        }
-                    },
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            mozjpeg: {
-                                progressive: true,
-                                quality: 65
-                            },
-                            optipng: {
-                                enabled: false,
-                            },
-                            pngquant: {
-                                quality: '65-90',
-                                speed: 4
-                            },
-                            gifsicle: {
-                                interlaced: false,
-                            },
-                            webp: {
-                                quality: 75
-                            }
+                            limit: 10000,
+                            name: 'img/[name]-[hash:5].[ext]',
                         }
                     }
                 ]
@@ -57,8 +33,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: '[name]-[hash:5].[ext]',
-                    output: 'fonts/',
+                    name: 'fonts/[name]-[hash:5].[ext]',
                 }
             },
             {
@@ -72,12 +47,7 @@ module.exports = {
                         loader: 'url-loader',
                         options: {
                             limit: 4096,
-                            fallback: {
-                                loader: 'file-loader',
-                                options: {
-                                    name: 'media/[name].[hash:8].[ext]'
-                                }
-                            }
+                            name: 'media/[name]-[hash:5].[ext]',
                         }
                     }
                 ]
@@ -92,7 +62,7 @@ module.exports = {
         new VueLoaderPlugin(),
     ],
     resolve: {
-        extensions: ['js','json','vue'],
+        extensions: ['.js','.json','.vue'],
         alias: {
             '@': path.resolve(__dirname,'../src')
         }

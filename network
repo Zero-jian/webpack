@@ -1,0 +1,5 @@
+//编译ES6
+//babel-loader 支持ES6语法，但是不支持新的API
+//babel-polyfill 编译ES6新增的API，但是会引入全部内容，造成冗余
+//babel-preser-env 设置ES6转换标准
+//babel-core 必备(I'm don't no)

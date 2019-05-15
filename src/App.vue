@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Hello World</p>
+        <p>Hello dsadaaaasld</p>
         <span>{{text}}</span>
         <img src="./assets/images/sister.jpg" alt="">
         <audio autoplay="autoplay" controls>

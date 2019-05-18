@@ -1,5 +1,8 @@
 <template>
     <div class="main">
+        <audio controls autoplay>
+            <source src="@/assets/music/children.mp3">    
+        </audio> 
         <p class="title">{{text}}</p>
         <router-view></router-view>
     </div>
@@ -26,7 +29,7 @@
 
     .title {
         text-align: center;
-        margin-top: 150px;
+        margin-top: 50px;
         font-size: 60px;
         color: #5a9cdd;
     }

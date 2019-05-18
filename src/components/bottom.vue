@@ -1,18 +1,52 @@
 <template>
     <div class="bottom">
-        <div class="left">0 items left</div>
+        <div class="left">{{todoData.length}} items left</div>
         <div class="right">
-            <button>All</button>
-            <button>Active</button>
-            <button>Completed</button>
+            <button v-for="(item,index) in btn" @click="changeBtn(item,index)" :style="{background: status==index?`#429a8a`:``}">{{item}}</button>
         </div>
     </div>
 </template>
 <script>
+    import {mapState} from 'vuex'
     export default {
         data() {
             return {
-
+                btn: ['All','Active','Completed'],
+                status: 0,
+            }
+        },
+        methods: {
+            all() {
+                this.$store.dispatch('dataall').then(()=>{
+                    console.log(this.filterToDo);
+                });
+            },
+            active() {
+                this.$store.dispatch('dataactive').then(()=>{
+                    console.log(this.filterToDo);
+                })
+            },
+            completed() {
+                this.$store.dispatch('datacompleted').then(()=>{
+                    console.log(this.filterToDo);
+                })
+            },
+            changeBtn(item,index) {
+                this.status = index;
+                this.$store.dispatch('hasbutton',{
+                    data: item
+                });
+                switch(item) {
+                    case 'All': this.all(); break;
+                    case 'Active': this.active(); break;
+                    case 'Completed': this.completed(); break;
+                }
+            }
+        },
+        computed: {
+            ...mapState(['filterToDo']),
+            todoData() {
+                return this.filterToDo;
             }
         }
     }

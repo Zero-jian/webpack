@@ -1,20 +1,39 @@
 <template>
-    <div class="todo-question">
-        <div class="todo-check"></div>
-        <div class="todo-text">dada</div>
+    <div>
+        <div class="todo-question" v-for="(item,index) in todoData">
+            <div class="todo-check" :class="{check: item.status === `Completed`}" @click="changeState(item)"></div>
+            <div class="todo-text">{{item.text}}</div> 
+        </div>
     </div>
     </div>
 </template>
 <script>
+    import {mapState} from 'vuex'
     export default {
         data() {
             return {
 
             }
+        },
+        computed: {
+            ...mapState([
+                'filterToDo'
+            ]),
+            todoData() {
+                return this.filterToDo;
+            }
+        },
+        methods: {
+            changeState(item) {
+                item.status === 'Completed' ? item.status = 'Active' : item.status = 'Completed';
+            }
         }
     }
 </script>
 <style lang="less" scoped>
+    .check {
+        background: #3F51B5;
+    }
     .todo-question {
         border-top: 1px solid #2182be;
         background: #fff;

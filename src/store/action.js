@@ -13,5 +13,49 @@ export default ({
             });
             resolve(data);
         });
+    },
+
+    //筛选all数据
+    dataall: ({
+        commit
+    }) => {
+        return new Promise((resolve,reject)=>{
+            commit(types.DATAALL);
+            resolve();
+        });
+    },
+
+    //筛选未完成数据
+    dataactive: ({
+        commit
+    }) => {
+        return new Promise((resolve,reject)=>{
+            commit(types.DATAACTIVE);
+            resolve();
+        })
+    },
+
+    //筛选完成数据
+    datacompleted: ({
+        commit
+    }) => {
+        return new Promise((resolve,reject) => {
+            commit(types.DATACOMPLETED);
+            resolve();
+        })
+    },
+
+    //获取当前按钮选中状态
+    hasbutton: ({
+        commit
+    },{
+        data
+    }) => {
+        return new Promise((resolve,reject) =>{
+            commit(types.HASBUTTON,{
+                data: data
+            });
+            resolve();
+        })
     }
 })

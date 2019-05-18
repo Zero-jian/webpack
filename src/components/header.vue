@@ -16,25 +16,42 @@
                 if(!this.text) {
                     alert("小朋友，不可以为空哦");
                 }else {
-                    this.save();
+                    this.checkRepeat();
                     this.text = "";
                 }
             },
             save() {
-                let data = {
-                    text: this.text,
-                    status: 'completed'
+                if(this.repeat) {
+                    let data = {
+                        text: this.text,
+                        status: this.status
+                    }
+                    this.$store.dispatch('data_save',{
+                        data: data
+                    }).then((data)=>{
+                        this.newData();
+                    });
+                } else {
+                    alert("小孩子，不可以重复哦");
                 }
-                this.$store.dispatch('data_save',{
-                    data: data
-                }).then((data)=>{
-                    console.log(this.todo);
-                });
+            },
+            checkRepeat() {
+                this.repeat = this.todo.every(item => item.text != this.text);
+                this.save();
+            },
+            newData() {
+                switch(this.status) {
+                    case 'All': this.$store.dispatch('dataall'); break;
+                    case 'Active': this.$store.dispatch('dataactive'); break;
+                    case 'Completed': this.$store.dispatch('datacompleted'); break;
+                }
             }
         },
         computed: {
             ...mapState([
-                'todo'
+                'todo',
+                'filterToDo',
+                'status'
             ])
         }
     }

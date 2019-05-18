@@ -9,3 +9,6 @@ export const DATACOMPLETED = 'DATACOMPLETED'
 
 //筛选未完成数据
 export const DATAACTIVE = 'DATAACTIVE'
+
+//获取当前按钮状态
+export const HASBUTTON = 'HASBUTTON'
